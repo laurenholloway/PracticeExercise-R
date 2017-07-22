@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RootDrivingChallenge
 {
-    public class Trip
+    public static class Trip
     {
         //Trip properties
-        public string StartTime { get; set; }
-        public string StopTime {get; set; }
-        public double TripMiles { get; set; }
+        public static string StartTime { get; set; }
+        public static string StopTime {get; set; }
+        public static double TripMiles { get; set; }
 
         //Methods
-        public double CalculateTripTime(string start, string stop)
+        public static double CalculateTripTime(string start, string stop)
         {
             //Separating the hours from the minutes
             string[] startArr = start.Split(':');
