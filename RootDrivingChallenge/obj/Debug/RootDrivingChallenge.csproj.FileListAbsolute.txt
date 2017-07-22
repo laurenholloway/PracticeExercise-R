@@ -1,0 +1,6 @@
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\bin\Debug\RootDrivingChallenge.exe.config
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\bin\Debug\RootDrivingChallenge.exe
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\bin\Debug\RootDrivingChallenge.pdb
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\obj\Debug\RootDrivingChallenge.csprojResolveAssemblyReference.cache
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\obj\Debug\RootDrivingChallenge.exe
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\obj\Debug\RootDrivingChallenge.pdb
