@@ -39,41 +39,44 @@ namespace RootDrivingChallenge
 
                 }
                 
-                //NEED TO FIX MPH CALCULATION
-                    if (line[0] == "Trip")
-                    {
-                    var currentDriver = DrivingRecord[driverName];
+                    
+                if (line[0] == "Trip")
+                {
+                var currentDriver = DrivingRecord[driverName];
 
-                    double tripTime = Trip.CalculateTripTime(line[2], line[3]);
-                    double tripMiles = double.Parse(line[4]);
-                    double tripMPH = tripMiles / tripTime;
+                double tripTime = Trip.CalculateTripTime(line[2], line[3]);
+                double tripMiles = double.Parse(line[4]);
+                double tripMPH = tripMiles / tripTime;
 
-                    if(tripMPH >= 5 || tripMPH <= 100)
-                    {
-                        driverTime += tripTime;
-                        currentDriver.DriverTime += driverTime;
+                //Update driver properties if entry is not less than 5mph or greater than 100mph
+                if(tripMPH >= 5 || tripMPH <= 100)
+                {
+                    driverTime += tripTime;
+                    currentDriver.DriverTime += driverTime;
 
-                        driverMiles += tripMiles;
-                        currentDriver.DriverMiles += driverMiles;
+                    driverMiles += tripMiles;
+                    currentDriver.DriverMiles += driverMiles;
 
-                    }
+                }
 
 
 
                     //Overall Speed
-                    speed = Convert.ToInt32(Math.Round(currentDriver.DriverMiles / currentDriver.DriverTime));
-                    currentDriver.DriverSpeed = speed;
+                speed = Convert.ToInt32(Math.Round(currentDriver.DriverMiles / currentDriver.DriverTime));
+
+                currentDriver.DriverSpeed = speed;
 
                         
-                    }   
+                }   
             }
+
             //LINQ for sorting the dictionary
             var drivingRecordSorted = from entry in DrivingRecord
                                       orderby entry.Value.DriverMiles descending
                                       select entry;
 
-            var drivingRecordSortedList = drivingRecordSorted;
-            foreach (var name in drivingRecordSortedList)
+            //Printing the records based on number of miles driven
+            foreach (var name in drivingRecordSorted)
             {
                 if(name.Value.DriverMiles > 0)
                 {
