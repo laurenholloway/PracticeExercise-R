@@ -12,9 +12,6 @@ namespace RootDrivingChallenge
         static void Main(string[] args)
         {
 
-            //This is how to save the objects in a dictionary
-            List<string> names = new List<string>();
-
             //Dictionary to hold driver name as key and Driver object as value
             Dictionary<string, Driver> DrivingRecord = new Dictionary<string, Driver>();
 
@@ -55,7 +52,7 @@ namespace RootDrivingChallenge
                     driverMiles += tripMiles;
                     currentDriver.DriverMiles += driverMiles;
 
-                    speed = Convert.ToInt32(Math.Round(driverMiles / driverTime));
+                    speed = Convert.ToInt32(Math.Round(currentDriver.DriverMiles / currentDriver.DriverTime));
                     currentDriver.DriverSpeed = speed;
 
                         
@@ -63,7 +60,7 @@ namespace RootDrivingChallenge
             }
             foreach (string name in DrivingRecord.Keys)
             {
-                Console.WriteLine("{0}: {1} miles @ {2} mph (Time: {3} Hours)", DrivingRecord[name].DriverName, DrivingRecord[name].DriverMiles, DrivingRecord[name].DriverSpeed, DrivingRecord[name].DriverTime);
+                Console.WriteLine("{0}: {1} miles @ {2} mph", DrivingRecord[name].DriverName, Math.Round(DrivingRecord[name].DriverMiles), DrivingRecord[name].DriverSpeed);
             }
 
             file.Close();
