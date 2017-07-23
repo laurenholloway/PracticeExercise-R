@@ -44,23 +44,44 @@ namespace RootDrivingChallenge
                     {
                     var currentDriver = DrivingRecord[driverName];
 
-                    double tripTime = Trip.CalculateTripTime(line[2], line[3]);    
-                    driverTime += tripTime;
-                    currentDriver.DriverTime += driverTime;
-
+                    double tripTime = Trip.CalculateTripTime(line[2], line[3]);
                     double tripMiles = double.Parse(line[4]);
-                    driverMiles += tripMiles;
-                    currentDriver.DriverMiles += driverMiles;
+                    double tripMPH = tripMiles / tripTime;
 
+                    if(tripMPH >= 5 || tripMPH <= 100)
+                    {
+                        driverTime += tripTime;
+                        currentDriver.DriverTime += driverTime;
+
+                        driverMiles += tripMiles;
+                        currentDriver.DriverMiles += driverMiles;
+
+                    }
+
+
+
+                    //Overall Speed
                     speed = Convert.ToInt32(Math.Round(currentDriver.DriverMiles / currentDriver.DriverTime));
                     currentDriver.DriverSpeed = speed;
 
                         
                     }   
             }
+            //LINQ for sorting the dictionary
+            //var drivingRecordSorted = from entry in DrivingRecord
+            //                          orderby entry.Value.DriverMiles descending
+            //                          select 
             foreach (string name in DrivingRecord.Keys)
             {
-                Console.WriteLine("{0}: {1} miles @ {2} mph", DrivingRecord[name].DriverName, Math.Round(DrivingRecord[name].DriverMiles), DrivingRecord[name].DriverSpeed);
+                if(DrivingRecord[name].DriverMiles > 0)
+                {
+                    Console.WriteLine("{0}: {1} miles @ {2} mph", DrivingRecord[name].DriverName, Math.Round(DrivingRecord[name].DriverMiles), DrivingRecord[name].DriverSpeed);
+                }
+                else
+                {
+                    Console.WriteLine("{0}: {1} miles", DrivingRecord[name].DriverName, Math.Round(DrivingRecord[name].DriverMiles));
+                }
+                
             }
 
             file.Close();
