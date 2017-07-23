@@ -13,7 +13,7 @@ namespace RootDrivingChallenge
         public static string StopTime {get; set; }
         public static double TripMiles { get; set; }
 
-        //Methods
+        //Calculate the trip duration
         public static double CalculateTripTime(string start, string stop)
         {
             //Separating the hours from the minutes
