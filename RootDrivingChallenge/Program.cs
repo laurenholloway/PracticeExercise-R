@@ -68,18 +68,20 @@ namespace RootDrivingChallenge
                     }   
             }
             //LINQ for sorting the dictionary
-            //var drivingRecordSorted = from entry in DrivingRecord
-            //                          orderby entry.Value.DriverMiles descending
-            //                          select 
-            foreach (string name in DrivingRecord.Keys)
+            var drivingRecordSorted = from entry in DrivingRecord
+                                      orderby entry.Value.DriverMiles descending
+                                      select entry;
+
+            var drivingRecordSortedList = drivingRecordSorted;
+            foreach (var name in drivingRecordSortedList)
             {
-                if(DrivingRecord[name].DriverMiles > 0)
+                if(name.Value.DriverMiles > 0)
                 {
-                    Console.WriteLine("{0}: {1} miles @ {2} mph", DrivingRecord[name].DriverName, Math.Round(DrivingRecord[name].DriverMiles), DrivingRecord[name].DriverSpeed);
+                    Console.WriteLine("{0}: {1} miles @ {2} mph", name.Value.DriverName, Math.Round(name.Value.DriverMiles), name.Value.DriverSpeed);
                 }
                 else
                 {
-                    Console.WriteLine("{0}: {1} miles", DrivingRecord[name].DriverName, Math.Round(DrivingRecord[name].DriverMiles));
+                    Console.WriteLine("{0}: {1} miles", name.Value.DriverName, Math.Round(name.Value.DriverMiles));
                 }
                 
             }
