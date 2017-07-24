@@ -69,5 +69,14 @@ public Driver(string driverName, double driverMiles, int driverSpeed, double dri
     //constructor for creating Driver objects for each driver listed in the file
 }
 ```
-
+## CalculateSpeed() Method
+This method calculates the speed for each driver based on the properties `DriverMiles` divided by `DriverTime`. The `Round(...)` method of the `Math` class is used to round the speed to the nearest whole value. Next, the value is converted to an integer using `Convert.ToInt32(...)` because the variable the value is being assigned to (`mph`) is an integer. The problem asks that the speed is returned as a whole number, so lastly, `mph` is returned.
+```CSharp
+//Calculate the MPH for the driver
+public int CalculateSpeed()
+{
+      int mph = Convert.ToInt32(Math.Round(DriverMiles / DriverTime));
+      return mph;
+}
+```
 
