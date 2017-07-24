@@ -20,6 +20,7 @@ This README includes an explanation of the different components of the Root Driv
   - [Solution Output](##Solution-Output)
 
 <div id="#DriverClassOverview">
+
 # Driver Class Overview
 Blah Blah Blah
 </div>
