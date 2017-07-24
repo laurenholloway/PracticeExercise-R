@@ -34,29 +34,29 @@ private int driverSpeed;
 ## Properties
 ```CSharp
 //Properties
-        public double DriverMiles
-        {
-            get { return this.driverMiles; }
-            set { this.driverMiles += value; }
-        }
+public double DriverMiles
+{
+    get { return this.driverMiles; }
+    set { this.driverMiles += value; }
+}
 
-        public string DriverName
-        {
-            get { return this.driverName; }
-            set { this.driverName = value; }
-        }
+public string DriverName
+{
+     get { return this.driverName; }
+     set { this.driverName = value; }
+}
 
-        public double DriverTime
-        {
-            get { return this.driverTime; }
-            set { this.driverTime += value; }
-        }
+public double DriverTime
+{
+     get { return this.driverTime; }
+     set { this.driverTime += value; }
+}
 
-        public int DriverSpeed
-        {
-            get { return this.driverSpeed; }
-            set { this.driverSpeed = value; }
-        }
+public int DriverSpeed
+{
+     get { return this.driverSpeed; }
+     set { this.driverSpeed = value; }
+}
  ``` 
 
   
