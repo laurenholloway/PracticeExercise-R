@@ -59,5 +59,12 @@ public int DriverSpeed
      set { this.driverSpeed = value; }
 }
  ``` 
+ 
+ ## Constructor
+//constructor
+public Driver(string driverName, double driverMiles, int driverSpeed, double driverTime)
+{
+    //constructor for creating Driver objects for each driver listed in the file
+}
 
   
