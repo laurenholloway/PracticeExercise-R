@@ -3,7 +3,7 @@ This README includes an explanation of the different components of the Root Driv
 
 ## Table of Contents
 - [Driver Class Overview](#Driver-Class-Overview)
-  - [Fields](##Fields)
+  - [Fields](#Fields)
   - [Properties](##Properties)
   - [Constructor](##Constructor)
   - [CalculateSpeed() Method](##CalculateSpeed()-Method)
