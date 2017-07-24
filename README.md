@@ -2,6 +2,7 @@
 This README includes an explanation of the different components of the Root Driving History interview problem. To summarize the approach taken, the program reads the input from a text file line-by-line until there are no remaining lines of text to read. There are 2 primary actions that need to take place within the program. These actions are based on the two commands: Trip and Driver. If the text line starts with Driver, the program will take certain actions, and if the text line starts with Trip, the program will take other actions. All of the drivers and their driving history information is saved in a dictionary with the keys as their names and the values as Driver class objects. Once all of the calculations are completed, the driver information is sorted using LINQ, so the first printed output is the driver with the most miles (descending order). 
 
 ## Table of Contents
+- <a href="#DriverClassOverview">Driver Class Overview</a>
 - [Driver Class Overview](#Driver-Class-Overview)
   - [Fields](##Driver-Class-Fields)
   - [Properties](##Driver-Class-Properties)
@@ -18,6 +19,8 @@ This README includes an explanation of the different components of the Root Driv
   - [Sorting Driving Records by Miles](##Sorting-Driving-Records)
   - [Solution Output](##Solution-Output)
 
+<div id="#DriverClassOverview">
 # Driver Class Overview
 Blah Blah Blah
+</div>
   
