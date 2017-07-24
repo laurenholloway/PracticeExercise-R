@@ -13,12 +13,13 @@ namespace RootDrivingChallenge
         public double DriverTime { get; set; }
         public int DriverSpeed { get; set; }
 
+        //Add constructor
+
         //Calculate the total number of miles driven by the driver
         public double SumDriverTime(double tripDuration)
         {
             DriverTime += tripDuration;
-            return DriverTime;
-            
+            return DriverTime;    
         }
 
         //Calculate the total number of miles driven by the driver
