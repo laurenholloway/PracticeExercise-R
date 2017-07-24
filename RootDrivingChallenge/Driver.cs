@@ -8,34 +8,48 @@ namespace RootDrivingChallenge
 {
     public class Driver
     {
-        public double DriverMiles { get; set; }
-        public string DriverName { get; set; }
-        public double DriverTime { get; set; }
-        public int DriverSpeed { get; set; }
+        //Fields
+        private string driverName;
+        private double driverMiles;
+        private double driverTime;
+        private int driverSpeed;
 
-        //Add constructor
-
-        //Calculate the total number of miles driven by the driver
-        public double SumDriverTime(double tripDuration)
+        //Properties
+        public double DriverMiles
         {
-            DriverTime += tripDuration;
-            return DriverTime;    
+            get { return this.driverMiles; }
+            set { this.driverMiles += value; }
         }
 
-        //Calculate the total number of miles driven by the driver
-        public double SumDriverMiles(double tripMiles)
+        public string DriverName
         {
-            DriverMiles += tripMiles;
-            return DriverMiles;
+            get { return this.driverName; }
+            set { this.driverName = value; }
         }
 
+        public double DriverTime
+        {
+            get { return this.driverTime; }
+            set { this.driverTime += value; }
+        }
+
+        public int DriverSpeed
+        {
+            get { return this.driverSpeed; }
+            set { this.driverSpeed = value; }
+        }
+
+        //constructor
+        public Driver(string driverName, double driverMiles, int driverSpeed, double driverTime)
+        {
+
+        }
+        
         //Calculate the MPH for the driver
-        public int CalculateSpeed(double driverMiles, double driverTime)
+        public int CalculateSpeed()
         {
-            int mph = Convert.ToInt32(Math.Round(driverMiles / DriverTime));
+            int mph = Convert.ToInt32(Math.Round(this.driverMiles / this.driverTime));
             return mph;
         }
     }
-
-   
 }
