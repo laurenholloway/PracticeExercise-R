@@ -3,9 +3,9 @@ This README includes an explanation of the different components of the Root Driv
 
 ## Table of Contents
 - [Driver Class Overview](#Driver-Class-Overview)
-  - [Fields](##Driver-Class-Fields)
-  - [Properties](##Driver-Class-Properties)
-  - [Constructor](##Driver-Class-Constructor)
+  - [Fields](##Fields)
+  - [Properties](##Properties)
+  - [Constructor](##Constructor)
   - [CalculateSpeed() Method](##CalculateSpeed()-Method)
 - [Trip Class Overview](##Trip-Class-Overview)
   - [Properties](##Trip-Class-Properties)
@@ -61,12 +61,13 @@ public int DriverSpeed
  ``` 
  
  ## Constructor
- ```CSharp
- For each driver listed in the text file, a Driver object is created. The following constructor was created, so that information about the object is being passed in on object creation.
+For each driver listed in the text file, a Driver object is created. The following constructor was created with parameters for the driver's name, miles driven, speed, and time driven, so that the information about the object(driver) is being passed in on object creation.
+```CSharp
 //constructor
 public Driver(string driverName, double driverMiles, int driverSpeed, double driverTime)
 {
     //constructor for creating Driver objects for each driver listed in the file
 }
 ```
-  
+
+
