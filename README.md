@@ -124,8 +124,26 @@ public static double CalculateTripSpeed(double tripMiles, double tripTime)
 ```
 
 # Program Class Overview
+This program class contains the Main method, which is the entry point to the program. I approached this problem by reading the input file with the sample driving data and have 2 main pieces of business to handle based on whether the line starts with the Driver command or the Trip command.
 
 ## Requirement: Handling Driver Command
+Each line that starts with Driver is then followed by the driver's name. I decided to use the Driver command as a way to ensure that I have a Driver instance instantiated for each driver that exists on the record. If I were to only create Driver instances on the Trip command, if a driver does not take a trip, then it will appear as if the driver does not exist in the report. All driver information is stored in a Dictionary with the driver's name as the key and the value is an instance of the Driver class.
+
+```CSharp
+//Dictionary to hold driver name as key and Driver object as value
+Dictionary<string, Driver> DrivingRecord = new Dictionary<string, Driver>();
+
+//...
+
+//Creating dictionary element for each driver listed
+if (word[0] == "Driver")
+{
+       DrivingRecord[driverName] = new Driver(driverName, driverMiles, speed, driverTime);
+
+       var currentDriver = DrivingRecord[driverName];
+       currentDriver.DriverName = driverName;
+}
+```
 
 ## Requirement: Handling Trip Command
 
