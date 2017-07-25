@@ -16,7 +16,7 @@ This README includes an explanation of the different components of the Root Driv
   - [Requirement: Handling Outlier Trips](##Outlier-Trips)
   - [Requirement: Sorting Driving Records by Miles](##Sorting-Driving-Records)
 
-# Driver Class Overview
+# Driver Class Overview <a name="Driver-Class-Overview"></a>
 The Driver class is the blueprint for all of the driver objects that will be created. The problem description informs us that there are specific pieces of information we need to output about the driver, including the driver's name, total number of miles traveled and the driver's speed based also on the total amount of time driving. These key pieces of information will be the fields of the driver class, and the fields are accessed through the properties. This class also includes a method for calculating the speed for the driver and returns the value in the Program class.
 
 ## Fields
