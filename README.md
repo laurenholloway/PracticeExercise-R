@@ -4,24 +4,23 @@ This README includes an explanation of the different components of the Root Driv
 ## Table of Contents
 - [Driver Class Overview](#Driver-Class-Overview)
   - [Fields](#Fields)
-  - [Properties](##Properties)
-  - [Constructors](##Constructor)
-  - [CalculateSpeed() Method](##Method1)
-- [Trip Class Overview](##Trip)
-  - [CalculateTripTime(...) Method](##Method2)
-  - [CalculateTripSpeed(...) Method](##Method3)  
-- [Program Class Overview](##Program)
-  - [Requirement: Handling Driver Command](##DriverC)
-  - [Requirement: Handling Trip Command](##TripC)
-  - [Requirement: Handling Outlier Trips](##Outlier)
-  - [Requirement: Sorting Driving Records by Miles](##Sort)
+  - [Properties](#Properties)
+  - [Constructors](#Constructor)
+  - [CalculateSpeed() Method](#Method1)
+- [Trip Class Overview](#Trip)
+  - [CalculateTripTime(...) Method](#Method2)
+  - [CalculateTripSpeed(...) Method](#Method3)  
+- [Program Class Overview](#Program)
+  - [Requirement: Handling Driver Command](#DriverC)
+  - [Requirement: Handling Trip Command](#TripC)
+  - [Requirement: Handling Outlier Trips](#Outlier)
+  - [Requirement: Sorting Driving Records by Miles](#Sort)
 
 <a name="Driver-Class-Overview"></a>
 # Driver Class Overview <a name="Driver-Class-Overview"></a>
 The Driver class is the blueprint for all of the driver objects that will be created. The problem description informs us that there are specific pieces of information we need to output about the driver, including the driver's name, total number of miles traveled and the driver's speed based also on the total amount of time driving. These key pieces of information will be the fields of the driver class, and the fields are accessed through the properties. This class also includes a method for calculating the speed for the driver and returns the value in the Program class.
 
-<a name="Driver-Class-Overview"></a>
-
+<a name="Fields"></a>
 ## Fields
 In C#, we can create properties without explicitly creating fields using the short hand `{ get; set; }` implementations. For the Driver class, I explicitly created the private fields as seen below. Because these fields are private, they cannot be accessed outside of the Driver class. Instead, the fields are accessed through their public properties. The `driverName` is declared as a string data type because a name is a sequence of characters. Both `driverMiles` and `driverTime` are doubles because they are floating point types because a driver could drive a partial mile and time (calculated by number of hours) could be a partial hour. The `driverSpeed` field is declared as an integer because we will use a method to calculate the driver's speed and the method will return the speed as an integer.
 ```CSharp
