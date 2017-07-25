@@ -3,9 +3,9 @@ This README includes an explanation of the different components of the Root Driv
 
 ## Table of Contents
 - [Driver Class Overview](#Driver-Class-Overview)
-  - [Fields](##Driver-Class-Fields)
-  - [Properties](##Driver-Class-Properties)
-  - [Constructor](##Driver-Class-Constructor)
+  - [Fields](#Fields)
+  - [Properties](##Properties)
+  - [Constructors](##Constructor)
   - [CalculateSpeed() Method](##CalculateSpeed()-Method)
 - [Trip Class Overview](##Trip-Class-Overview)
   - [Properties](##Trip-Class-Properties)
@@ -59,5 +59,30 @@ public int DriverSpeed
      set { this.driverSpeed = value; }
 }
  ``` 
+ 
+## Constructors
+For each driver listed in the text file, a Driver object is created. The following constructor was created with parameters for the driver's name, miles driven, speed, and time driven, so that the information about the object(driver) is being passed in on object creation. The first constructor is the default constructor, which would allow us to instantiate a new driver object without having to pass in any information upfront.
+```CSharp
+//constructors
+public Driver()
+{
+     //Default constructor
+}
 
-  
+public Driver(string driverName, double driverMiles, int driverSpeed, double driverTime)
+{
+     //constructor for creating Driver objects for each driver listed in the file
+}
+```
+## CalculateSpeed() Method
+This method calculates the speed for each driver based on the properties `DriverMiles` divided by `DriverTime`. The `Round(...)` method of the `Math` class is used to round the speed to the nearest whole value. Next, the value is converted to an integer using `Convert.ToInt32(...)` because the variable the value is being assigned to (`mph`) is an integer. The problem asks that the speed is returned as a whole number, so lastly, `mph` is returned.
+```CSharp
+//Calculate the MPH for the driver
+public int CalculateSpeed()
+{
+      int mph = Convert.ToInt32(Math.Round(DriverMiles / DriverTime));
+      return mph;
+}
+```
+# Trip Class Overview
+The Trip class is
