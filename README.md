@@ -31,9 +31,7 @@ private double driverMiles;
 private double driverTime;
 private int driverSpeed;
 ```
-<div style="text-align:right">
 [Top](#Top)
-</div>
 
 ## Properties
 The public properties are used to access the private fields. The public access modifier on the properties allows the properties to be accessed within the Program class. For each private fields, there is a public property. The `set` implementation is different depending on the property. For `DriverMiles` and `DriverTime`, the shorthand `+=` operators because the properties will hold total values for the driver. This means for each trip a driver takes, their total number of miles driven (`DriverMiles`) must be updated based on the trip miles. The trip miles comes into play as `value` in the Program class. The same is for `DriverTime`. For both `DriverName` and `DriverSpeed` the values will be assigned simply with an `=` to the appropriate value in the Program class.
@@ -63,6 +61,7 @@ public int DriverSpeed
      set { this.driverSpeed = value; }
 }
  ``` 
+ [Top](#Top)
  
 ## Constructors
 For each driver listed in the text file, a Driver object is created. The following constructor was created with parameters for the driver's name, miles driven, speed, and time driven, so that the information about the object(driver) is being passed in on object creation. The first constructor is the default constructor, which would allow us to instantiate a new driver object without having to pass in any information upfront.
@@ -78,6 +77,7 @@ public Driver(string driverName, double driverMiles, int driverSpeed, double dri
      //constructor for creating Driver objects for each driver listed in the file
 }
 ```
+[Top](#Top)
 
 ## CalculateSpeed() Method
 This method calculates the speed for each driver based on the properties `DriverMiles` divided by `DriverTime`. The `Round(...)` method of the `Math` class is used to round the speed to the nearest whole value. Next, the value is converted to an integer using `Convert.ToInt32(...)` because the variable the value is being assigned to (`mph`) is an integer. The problem asks that the speed is returned as a whole number, so lastly, `mph` is returned.
@@ -89,6 +89,7 @@ public int CalculateSpeed()
       return mph;
 }
 ```
+[Top](#Top)
 
 # Trip Class Overview
 The Trip class was created as a static class because we do not need to instantiate instances of the class. The class has 2 static methods, one for calculating the duration of each trip listed in the text file and the other for calculating the speed for each trip listed.
@@ -117,6 +118,7 @@ public static double CalculateTripTime(string start, string stop)
       return duration;
 }
 ```
+[Top](#Top)
 
 ## CalculateTripSpeed(...) Method
 The CalculateTripSpeed(...) method is needed in order to calculate the speed of each trip to check to see if the trip is an outlier trip based on the calculated mph and should be discarded and not included in the driver totals.
@@ -128,6 +130,7 @@ public static double CalculateTripSpeed(double tripMiles, double tripTime)
       return mph;
 }
 ```
+[Top](#Top)
 
 # Program Class Overview
 This program class contains the Main method, which is the entry point to the program. I approached this problem by reading the input file with the sample driving data and have 2 main pieces of business to handle based on whether the line starts with the Driver command or the Trip command.
@@ -150,6 +153,7 @@ if (word[0] == "Driver")
        currentDriver.DriverName = driverName;
 }
 ```
+[Top](#Top)
 
 ## Requirement: Handling Trip Command
 When the Trip command is used, there is a series of information that must be extracted from the line of text. If the Trip command is used, a current driver variable is initialized. The `CalculateTripTime(...)` and `CalculateTripSpeed(...)` methods are called and the appropriate arguments are passed in from the line of text. The current driver's properties of `DriverTime`, `DriverMiles`, and `DriverSpeed` are set.
@@ -173,6 +177,8 @@ else if (word[0] == "Trip")
         currentDriver.DriverSpeed = currentDriver.CalculateSpeed();
 } 
 ```
+[Top](#Top)
+
 ## Requirement: Handling Outlier Trips
 The problem requires that certain outlier trips are discarded and not included in the calculation of the driver's miles, time, or speed. These outlier trips include all trips that have a speed of less than 5mph or more than 100mph. This requirement was addressed using an `if statement`. So, if and only if the trip meets the speed requirements will it not be discarded.
 ```CSharp
@@ -184,6 +190,8 @@ if (tripMPH >= 5 || tripMPH <= 100)
         currentDriver.DriverMiles = tripMiles;
 }
 ```
+[Top](#Top)
+
 ## Requirement: Sorting Driving Records by Miles
 The last requirement before printing the output to the console, is to ensure that the report is ordered from the driver with the most number of miles to the driver with the least. For this sorting, LINQ was used to `orderby` the driver's miles in `descending` order.
 ```CSharp
@@ -192,3 +200,4 @@ var drivingRecordSorted = from entry in DrivingRecord
                           orderby entry.Value.DriverMiles descending
                           select entry;
 ```
+[Top](#Top)
