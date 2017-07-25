@@ -32,7 +32,6 @@ namespace RootDrivingChallenge
                 //Creating dictionary element for each driver listed
                 if (word[0] == "Driver")
                 {
-                    //use a constructor to pass in the values for the properties when creating object  
                     DrivingRecord[driverName] = new Driver(driverName, driverMiles, speed, driverTime);
 
                     var currentDriver = DrivingRecord[driverName];

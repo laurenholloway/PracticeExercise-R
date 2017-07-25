@@ -42,7 +42,7 @@ namespace RootDrivingChallenge
         //constructors
         public Driver()
         {
-            //Default constructor
+            //Default constructor 
         }
 
         public Driver(string driverName, double driverMiles, int driverSpeed, double driverTime)
