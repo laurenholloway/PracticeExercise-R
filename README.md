@@ -32,7 +32,7 @@ private double driverTime;
 private int driverSpeed;
 ```
 [Top](#Top)
-<a name="Proerties"></a>
+<a name="Properties"></a>
 ## Properties
 The public properties are used to access the private fields. The public access modifier on the properties allows the properties to be accessed within the Program class. For each private fields, there is a public property. The `set` implementation is different depending on the property. For `DriverMiles` and `DriverTime`, the shorthand `+=` operators because the properties will hold total values for the driver. This means for each trip a driver takes, their total number of miles driven (`DriverMiles`) must be updated based on the trip miles. The trip miles comes into play as `value` in the Program class. The same is for `DriverTime`. For both `DriverName` and `DriverSpeed` the values will be assigned simply with an `=` to the appropriate value in the Program class.
 ```CSharp
@@ -62,7 +62,7 @@ public int DriverSpeed
 }
  ``` 
  [Top](#Top)
-<a name="Constructors"></a>
+<a name="Constructor"></a>
 ## Constructors
 For each driver listed in the text file, a Driver object is created. The following constructor was created with parameters for the driver's name, miles driven, speed, and time driven, so that the information about the object(driver) is being passed in on object creation. The first constructor is the default constructor, which would allow us to instantiate a new driver object without having to pass in any information upfront.
 ```CSharp
