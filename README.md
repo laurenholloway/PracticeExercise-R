@@ -8,15 +8,13 @@ This README includes an explanation of the different components of the Root Driv
   - [Constructors](##Constructor)
   - [CalculateSpeed() Method](##CalculateSpeed()-Method)
 - [Trip Class Overview](##Trip-Class-Overview)
-  - [Properties](##Trip-Class-Properties)
   - [CalculateTripTime(...) Method](##CalculateTripTime(...)-Method)
+  - [CalculateTripSpeed(...) Method](##CalculateTripSpeed(...)-Method)  
 - [Program Class Overview](##Program-Class-Overview)
-  - [Reading Input](##Reading-Input)
   - [Requirement: Handling Driver Command](##Driver-Command)
   - [Requirement: Handling Trip Command](##Trip-Command)
   - [Requirement: Handling Outlier Trips](##Outlier-Trips)
-  - [Sorting Driving Records by Miles](##Sorting-Driving-Records)
-  - [Solution Output](##Solution-Output)
+  - [Requirement: Sorting Driving Records by Miles](##Sorting-Driving-Records)
 
 # Driver Class Overview
 The Driver class is the blueprint for all of the driver objects that will be created. The problem description informs us that there are specific pieces of information we need to output about the driver, including the driver's name, total number of miles traveled and the driver's speed based also on the total amount of time driving. These key pieces of information will be the fields of the driver class, and the fields are accessed through the properties. This class also includes a method for calculating the speed for the driver and returns the value in the Program class.
@@ -74,6 +72,7 @@ public Driver(string driverName, double driverMiles, int driverSpeed, double dri
      //constructor for creating Driver objects for each driver listed in the file
 }
 ```
+
 ## CalculateSpeed() Method
 This method calculates the speed for each driver based on the properties `DriverMiles` divided by `DriverTime`. The `Round(...)` method of the `Math` class is used to round the speed to the nearest whole value. Next, the value is converted to an integer using `Convert.ToInt32(...)` because the variable the value is being assigned to (`mph`) is an integer. The problem asks that the speed is returned as a whole number, so lastly, `mph` is returned.
 ```CSharp
@@ -84,5 +83,20 @@ public int CalculateSpeed()
       return mph;
 }
 ```
+
 # Trip Class Overview
-The Trip class is
+The Trip class was created as a static class because we do not need to instantiate instances of the class. The class has 2 static methods, one for calculating the duration of each trip listed in the text file and the other for calculating the speed for each trip listed.
+
+## CalculateTripTime(...) Method
+
+## CalculateTripSpeed(...) Method
+
+# Program Class Overview
+
+## Requirement: Handling Driver Command
+
+## Requirement: Handling Trip Command
+
+## Requirement: Handling Outlier Trips
+
+## Requirement: Sorting Driving Records by Miles
