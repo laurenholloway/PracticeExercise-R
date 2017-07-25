@@ -31,7 +31,9 @@ private double driverMiles;
 private double driverTime;
 private int driverSpeed;
 ```
+<div style="text-align:right">
 [Top](#Top)
+</div>
 
 ## Properties
 The public properties are used to access the private fields. The public access modifier on the properties allows the properties to be accessed within the Program class. For each private fields, there is a public property. The `set` implementation is different depending on the property. For `DriverMiles` and `DriverTime`, the shorthand `+=` operators because the properties will hold total values for the driver. This means for each trip a driver takes, their total number of miles driven (`DriverMiles`) must be updated based on the trip miles. The trip miles comes into play as `value` in the Program class. The same is for `DriverTime`. For both `DriverName` and `DriverSpeed` the values will be assigned simply with an `=` to the appropriate value in the Program class.
