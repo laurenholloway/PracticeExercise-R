@@ -45,7 +45,7 @@ namespace RootDrivingChallenge
                     var currentDriver = DrivingRecord[driverName];
                     double tripTime = Trip.CalculateTripTime(word[2], word[3]);
                     double tripMiles = double.Parse(word[4]);
-                    double tripMPH = tripMiles / tripTime;
+                    double tripMPH = Trip.CalculateTripSpeed(tripMiles, tripTime);
 
                     //Update driver properties if entry is not less than 5mph or greater than 100mph
                     if (tripMPH >= 5 || tripMPH <= 100)

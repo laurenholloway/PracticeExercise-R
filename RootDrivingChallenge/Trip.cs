@@ -8,11 +8,6 @@ namespace RootDrivingChallenge
 {
     public static class Trip
     {
-        //Trip properties
-        public static string StartTime { get; set; }
-        public static string StopTime {get; set; }
-        public static double TripMiles { get; set; }
-
         //Calculate the trip duration
         public static double CalculateTripTime(string start, string stop)
         {
@@ -27,16 +22,19 @@ namespace RootDrivingChallenge
             int stopMin = int.Parse(stopArr[1]);
 
             //Calculating duration
-            TimeSpan span = new TimeSpan(startHr, startMin, 0);
-            TimeSpan span2 = new TimeSpan(stopHr, stopMin, 0);
+            TimeSpan startSpan = new TimeSpan(startHr, startMin, 0);
+            TimeSpan stopSpan = new TimeSpan(stopHr, stopMin, 0);
 
-            double duration = (span2 - span).TotalHours;
+            double duration = (stopSpan - startSpan).TotalHours;
 
             return duration;
-
         }
 
-        
-
+        //Calculate the trip speed to be able to check for outliers (<5 MPH or >100 MPH)
+        public static double CalculateTripSpeed(double tripMiles, double tripTime)
+        {
+            double mph = tripMiles / tripTime;
+            return mph;
+        }
     }
 }

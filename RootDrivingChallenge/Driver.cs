@@ -39,7 +39,12 @@ namespace RootDrivingChallenge
             set { this.driverSpeed = value; }
         }
 
-        //constructor
+        //constructors
+        public Driver()
+        {
+            //Default constructor
+        }
+
         public Driver(string driverName, double driverMiles, int driverSpeed, double driverTime)
         {
             //constructor for creating Driver objects for each driver listed in the file
@@ -48,7 +53,7 @@ namespace RootDrivingChallenge
         //Calculate the MPH for the driver
         public int CalculateSpeed()
         {
-            int mph = Convert.ToInt32(Math.Round(this.driverMiles / this.driverTime));
+            int mph = Convert.ToInt32(Math.Round(DriverMiles / DriverTime));
             return mph;
         }
     }
