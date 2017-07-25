@@ -88,7 +88,7 @@ public int CalculateSpeed()
 The Trip class was created as a static class because we do not need to instantiate instances of the class. The class has 2 static methods, one for calculating the duration of each trip listed in the text file and the other for calculating the speed for each trip listed.
 
 ## CalculateTripTime(...) Method
-
+...
 ## CalculateTripSpeed(...) Method
 
 # Program Class Overview
