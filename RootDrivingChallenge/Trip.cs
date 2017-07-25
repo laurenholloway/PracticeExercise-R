@@ -26,7 +26,6 @@ namespace RootDrivingChallenge
             TimeSpan stopSpan = new TimeSpan(stopHr, stopMin, 0);
 
             double duration = (stopSpan - startSpan).TotalHours;
-
             return duration;
         }
 

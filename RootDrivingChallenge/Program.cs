@@ -15,7 +15,7 @@ namespace RootDrivingChallenge
             Dictionary<string, Driver> DrivingRecord = new Dictionary<string, Driver>();
 
             //StreamReader for reading the input from the file word by word
-            StreamReader file = new StreamReader("DrivingRecord.txt");
+            StreamReader file = new StreamReader(args[0]);
 
             string fileLine;
 

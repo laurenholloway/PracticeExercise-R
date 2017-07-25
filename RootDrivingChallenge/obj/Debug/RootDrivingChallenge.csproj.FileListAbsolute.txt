@@ -5,3 +5,4 @@ c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootD
 c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\obj\Debug\RootDrivingChallenge.pdb
 c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\bin\Debug\nunit.framework.dll
 c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\bin\Debug\nunit.framework.xml
+c:\users\lauren\documents\visual studio 2017\Projects\RootDrivingChallenge\RootDrivingChallenge\obj\Debug\RootDrivingChallenge.csprojResolveAssemblyReference.cache
