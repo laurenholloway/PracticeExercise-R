@@ -88,8 +88,40 @@ public int CalculateSpeed()
 The Trip class was created as a static class because we do not need to instantiate instances of the class. The class has 2 static methods, one for calculating the duration of each trip listed in the text file and the other for calculating the speed for each trip listed.
 
 ## CalculateTripTime(...) Method
-...
+The CalculateTripTime(...) method takes in two arguments, one for the start time of a trip and one for the stop time of the same trip. Both the start and stop times are passed as strings from the text file. Since they are both strings, in order to calculate how much time exists between the two times, they need to be converted into a numeric type. First, both the start time and stop are split at the ':' (colon) to separate the hours from the minutes. Once the hours and minutes are both parsed to integers, they are passed in as arguments for 2 different TimeSpan instances. There is a TimeSpan instance for both the start time and the stop time. Because the problem specifies the times are on a 24-hour clock and the stop time will always be greater than the start time, the duration of the trip is calculated by subtracting the TimeSpan instance for the start time from the TimeSpan instance for the stop time. To get the total number of hours (we want hours because our speed is calculated based on miles per hour), the TotalHours TimeSpan property is used. This value is then assigned to `duration` and returned.
+```CSharp
+//Calculate the trip duration
+public static double CalculateTripTime(string start, string stop)
+{
+      //Separating the hours from the minutes
+      string[] startArr = start.Split(':');
+      string[] stopArr = stop.Split(':');
+
+      int startHr = int.Parse(startArr[0]);
+      int stopHr = int.Parse(stopArr[0]);
+
+      int startMin = int.Parse(startArr[1]);
+      int stopMin = int.Parse(stopArr[1]);
+
+      //Calculating duration
+      TimeSpan startSpan = new TimeSpan(startHr, startMin, 0);
+      TimeSpan stopSpan = new TimeSpan(stopHr, stopMin, 0);
+
+      double duration = (stopSpan - startSpan).TotalHours;
+      return duration;
+}
+```
+
 ## CalculateTripSpeed(...) Method
+The CalculateTripSpeed(...) method is needed in order to calculate the speed of each trip to check to see if the trip is an outlier trip based on the calculated mph and should be discarded and not included in the driver totals.
+```CSharp
+//Calculate the trip speed to be able to check for outliers (<5 MPH or >100 MPH)
+public static double CalculateTripSpeed(double tripMiles, double tripTime)
+{
+      double mph = tripMiles / tripTime;
+      return mph;
+}
+```
 
 # Program Class Overview
 
