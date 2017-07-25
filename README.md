@@ -146,7 +146,43 @@ if (word[0] == "Driver")
 ```
 
 ## Requirement: Handling Trip Command
+When the Trip command is used, there is a series of information that must be extracted from the line of text. If the Trip command is used, a current driver variable is initialized. The `CalculateTripTime(...)` and `CalculateTripSpeed(...)` methods are called and the appropriate arguments are passed in from the line of text. The current driver's properties of `DriverTime`, `DriverMiles`, and `DriverSpeed` are set.
+```CSharp
+else if (word[0] == "Trip")
+{
+        var currentDriver = DrivingRecord[driverName];
+        double tripTime = Trip.CalculateTripTime(word[2], word[3]);
+        double tripMiles = double.Parse(word[4]);
+        double tripMPH = Trip.CalculateTripSpeed(tripMiles, tripTime);
 
+        //Update driver properties if entry is not less than 5mph or greater than 100mph
+        if (tripMPH >= 5 || tripMPH <= 100)
+        {
+            //Do calculation of driver's total time and miles in the driver class
+            currentDriver.DriverTime = tripTime;
+            currentDriver.DriverMiles = tripMiles;
+        }
+
+        //Calculate the overall Speed for a driver
+        currentDriver.DriverSpeed = currentDriver.CalculateSpeed();
+} 
+```
 ## Requirement: Handling Outlier Trips
-
+The problem requires that certain outlier trips are discarded and not included in the calculation of the driver's miles, time, or speed. These outlier trips include all trips that have a speed of less than 5mph or more than 100mph. This requirement was addressed using an `if statement`. So, if and only if the trip meets the speed requirements will it not be discarded.
+```CSharp
+//Update driver properties if entry is not less than 5mph or greater than 100mph
+if (tripMPH >= 5 || tripMPH <= 100)
+{
+        //Do calculation of driver's total time and miles in the driver class
+        currentDriver.DriverTime = tripTime;
+        currentDriver.DriverMiles = tripMiles;
+}
+```
 ## Requirement: Sorting Driving Records by Miles
+The last requirement before printing the output to the console, is to ensure that the report is ordered from the driver with the most number of miles to the driver with the least. For this sorting, LINQ was used to `orderby` the driver's miles in `descending` order.
+```CSharp
+//LINQ for sorting the dictionary
+var drivingRecordSorted = from entry in DrivingRecord
+                          orderby entry.Value.DriverMiles descending
+                          select entry;
+```
