@@ -8,15 +8,13 @@ This README includes an explanation of the different components of the Root Driv
   - [Constructors](##Constructor)
   - [CalculateSpeed() Method](##CalculateSpeed()-Method)
 - [Trip Class Overview](##Trip-Class-Overview)
-  - [Properties](##Trip-Class-Properties)
   - [CalculateTripTime(...) Method](##CalculateTripTime(...)-Method)
+  - [CalculateTripSpeed(...) Method](##CalculateTripSpeed(...)-Method)  
 - [Program Class Overview](##Program-Class-Overview)
-  - [Reading Input](##Reading-Input)
   - [Requirement: Handling Driver Command](##Driver-Command)
   - [Requirement: Handling Trip Command](##Trip-Command)
   - [Requirement: Handling Outlier Trips](##Outlier-Trips)
-  - [Sorting Driving Records by Miles](##Sorting-Driving-Records)
-  - [Solution Output](##Solution-Output)
+  - [Requirement: Sorting Driving Records by Miles](##Sorting-Driving-Records)
 
 # Driver Class Overview
 The Driver class is the blueprint for all of the driver objects that will be created. The problem description informs us that there are specific pieces of information we need to output about the driver, including the driver's name, total number of miles traveled and the driver's speed based also on the total amount of time driving. These key pieces of information will be the fields of the driver class, and the fields are accessed through the properties. This class also includes a method for calculating the speed for the driver and returns the value in the Program class.
@@ -74,6 +72,7 @@ public Driver(string driverName, double driverMiles, int driverSpeed, double dri
      //constructor for creating Driver objects for each driver listed in the file
 }
 ```
+
 ## CalculateSpeed() Method
 This method calculates the speed for each driver based on the properties `DriverMiles` divided by `DriverTime`. The `Round(...)` method of the `Math` class is used to round the speed to the nearest whole value. Next, the value is converted to an integer using `Convert.ToInt32(...)` because the variable the value is being assigned to (`mph`) is an integer. The problem asks that the speed is returned as a whole number, so lastly, `mph` is returned.
 ```CSharp
@@ -84,5 +83,106 @@ public int CalculateSpeed()
       return mph;
 }
 ```
+
 # Trip Class Overview
-The Trip class is
+The Trip class was created as a static class because we do not need to instantiate instances of the class. The class has 2 static methods, one for calculating the duration of each trip listed in the text file and the other for calculating the speed for each trip listed.
+
+## CalculateTripTime(...) Method
+The CalculateTripTime(...) method takes in two arguments, one for the start time of a trip and one for the stop time of the same trip. Both the start and stop times are passed as strings from the text file. Since they are both strings, in order to calculate how much time exists between the two times, they need to be converted into a numeric type. First, both the start time and stop are split at the ':' (colon) to separate the hours from the minutes. Once the hours and minutes are both parsed to integers, they are passed in as arguments for 2 different TimeSpan instances. There is a TimeSpan instance for both the start time and the stop time. Because the problem specifies the times are on a 24-hour clock and the stop time will always be greater than the start time, the duration of the trip is calculated by subtracting the TimeSpan instance for the start time from the TimeSpan instance for the stop time. To get the total number of hours (we want hours because our speed is calculated based on miles per hour), the TotalHours TimeSpan property is used. This value is then assigned to `duration` and returned.
+```CSharp
+//Calculate the trip duration
+public static double CalculateTripTime(string start, string stop)
+{
+      //Separating the hours from the minutes
+      string[] startArr = start.Split(':');
+      string[] stopArr = stop.Split(':');
+
+      int startHr = int.Parse(startArr[0]);
+      int stopHr = int.Parse(stopArr[0]);
+
+      int startMin = int.Parse(startArr[1]);
+      int stopMin = int.Parse(stopArr[1]);
+
+      //Calculating duration
+      TimeSpan startSpan = new TimeSpan(startHr, startMin, 0);
+      TimeSpan stopSpan = new TimeSpan(stopHr, stopMin, 0);
+
+      double duration = (stopSpan - startSpan).TotalHours;
+      return duration;
+}
+```
+
+## CalculateTripSpeed(...) Method
+The CalculateTripSpeed(...) method is needed in order to calculate the speed of each trip to check to see if the trip is an outlier trip based on the calculated mph and should be discarded and not included in the driver totals.
+```CSharp
+//Calculate the trip speed to be able to check for outliers (<5 MPH or >100 MPH)
+public static double CalculateTripSpeed(double tripMiles, double tripTime)
+{
+      double mph = tripMiles / tripTime;
+      return mph;
+}
+```
+
+# Program Class Overview
+This program class contains the Main method, which is the entry point to the program. I approached this problem by reading the input file with the sample driving data and have 2 main pieces of business to handle based on whether the line starts with the Driver command or the Trip command.
+
+## Requirement: Handling Driver Command
+Each line that starts with Driver is then followed by the driver's name. I decided to use the Driver command as a way to ensure that I have a Driver instance instantiated for each driver that exists on the record. If I were to only create Driver instances on the Trip command, if a driver does not take a trip, then it will appear as if the driver does not exist in the report. All driver information is stored in a Dictionary with the driver's name as the key and the value is an instance of the Driver class.
+
+```CSharp
+//Dictionary to hold driver name as key and Driver object as value
+Dictionary<string, Driver> DrivingRecord = new Dictionary<string, Driver>();
+
+//...
+
+//Creating dictionary element for each driver listed
+if (word[0] == "Driver")
+{
+       DrivingRecord[driverName] = new Driver(driverName, driverMiles, speed, driverTime);
+
+       var currentDriver = DrivingRecord[driverName];
+       currentDriver.DriverName = driverName;
+}
+```
+
+## Requirement: Handling Trip Command
+When the Trip command is used, there is a series of information that must be extracted from the line of text. If the Trip command is used, a current driver variable is initialized. The `CalculateTripTime(...)` and `CalculateTripSpeed(...)` methods are called and the appropriate arguments are passed in from the line of text. The current driver's properties of `DriverTime`, `DriverMiles`, and `DriverSpeed` are set.
+```CSharp
+else if (word[0] == "Trip")
+{
+        var currentDriver = DrivingRecord[driverName];
+        double tripTime = Trip.CalculateTripTime(word[2], word[3]);
+        double tripMiles = double.Parse(word[4]);
+        double tripMPH = Trip.CalculateTripSpeed(tripMiles, tripTime);
+
+        //Update driver properties if entry is not less than 5mph or greater than 100mph
+        if (tripMPH >= 5 || tripMPH <= 100)
+        {
+            //Do calculation of driver's total time and miles in the driver class
+            currentDriver.DriverTime = tripTime;
+            currentDriver.DriverMiles = tripMiles;
+        }
+
+        //Calculate the overall Speed for a driver
+        currentDriver.DriverSpeed = currentDriver.CalculateSpeed();
+} 
+```
+## Requirement: Handling Outlier Trips
+The problem requires that certain outlier trips are discarded and not included in the calculation of the driver's miles, time, or speed. These outlier trips include all trips that have a speed of less than 5mph or more than 100mph. This requirement was addressed using an `if statement`. So, if and only if the trip meets the speed requirements will it not be discarded.
+```CSharp
+//Update driver properties if entry is not less than 5mph or greater than 100mph
+if (tripMPH >= 5 || tripMPH <= 100)
+{
+        //Do calculation of driver's total time and miles in the driver class
+        currentDriver.DriverTime = tripTime;
+        currentDriver.DriverMiles = tripMiles;
+}
+```
+## Requirement: Sorting Driving Records by Miles
+The last requirement before printing the output to the console, is to ensure that the report is ordered from the driver with the most number of miles to the driver with the least. For this sorting, LINQ was used to `orderby` the driver's miles in `descending` order.
+```CSharp
+//LINQ for sorting the dictionary
+var drivingRecordSorted = from entry in DrivingRecord
+                          orderby entry.Value.DriverMiles descending
+                          select entry;
+```
